@@ -1,0 +1,18 @@
+{
+  "name": "zendesk-engineer-code-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "bootstrap": "^4.5.2",
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.26.10"
+  },
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "jquery": "^3.5.1"
+  }
+}

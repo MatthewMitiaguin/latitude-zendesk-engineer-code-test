@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <title>I'm a Zendesk Form</title>
+        <link rel="stylesheet" href="./style.scss" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>Hi, I'm a Zendesk Form</h1>
+                    <p>
+                        I'm used for capturing information from customers and creating tickets in Zendesk to be actioned
+                        by our customer service team.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <form>
+                        <div class="form-group">
+                            <label for="first-name">First name<sup>*</sup></label>
+                            <input type="text" class="form-control" id="first-name" placeholder="First name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="middle-name">Middle name</label>
+                            <input type="text" class="form-control" id="middle-name" placeholder="Middle name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last name<sup>*</sup></label>
+                            <input type="text" class="form-control" id="last-name" placeholder="Last name" />
+                        </div>
+                        <div class="form-group">
+                            <label>Date of birth<sup>*</sup></label>
+                            <div class="form-row">
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="Day" />
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="Month" />
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="Year" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>What product do you have with Latitude?<sup>*</sup></label>
+
+                            <div class="form-row">
+                                <div class="col">
+                                    <div class="form-check form-check-inline">
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            name="inlineRadioOptions"
+                                            id="inlineRadio1"
+                                            value="cc"
+                                        />
+                                        <label class="form-check-label" for="inlineRadio1">Credit Card</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            name="inlineRadioOptions"
+                                            id="inlineRadio2"
+                                            value="pl"
+                                        />
+                                        <label class="form-check-label" for="inlineRadio2">Personal Loan</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cc-no">Credit Card Number<sup>*</sup></label>
+                            <input type="text" class="form-control" id="cc-no" placeholder="Credit Card Number" />
+                        </div>
+                        <div class="form-group">
+                            <label for="pl-acc-no">Personal Loan Account Number<sup>*</sup></label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="pl-acc-no"
+                                placeholder="Personal Loan Account Number"
+                            />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Ticket</button>
+                    </form>
+                </div>
+            </div>
+            <div class="row" id="success-message">
+                <div class="col">
+                    <h1>Thanks for submitting your form!</h1>
+                    <p>A member of the customer service team will get back to within 48hours.</p>
+                </div>
+            </div>
+        </div>
+        <script src="./main.js"></script>
+    </body>
+</html>

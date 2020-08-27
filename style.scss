@@ -1,0 +1,15 @@
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+
+body {
+    background-color: rgb(232, 244, 255);
+    padding: 20px 0;
+}
+
+.container {
+    background: white;
+    border-radius: 5px;
+}
+
+#success-message {
+    display: none;
+}
