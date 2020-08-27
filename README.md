@@ -15,27 +15,29 @@
 -   Please complete this task WITHOUT additional MV frameworks such as Angular, Vue or React.
 -   You can add any additional jQuery plugins or utility libraries as required eg. lodash, moment.
 -   You can add class names and ids to any elements on the page.
+-   For convienience, Bootstrap 4 has been included, the focus is not on styling but on the functionality.
 
 ## Changes required
 
 Please complete the following tasks to help improve our mock customer ticket creation form.
 
-1. Add conditional formatting to the form
+1. Add conditional display to the form
 
 -   The Credit Card Number field should only be shown when the user selects "Credit Card" as their product type
 -   The Personal Loan Account Number should only be shown when the user selects "Personal Loan Account Number" as their product type
 
-2. Add validation to all fields marked with a \*
+2. Add form validation
 
+-   All fields marked with a \* are required
 -   Validation should be triggered on blur and also on submit.
--   Validation should trigger a custom message to inform customers
+-   Validation should trigger a custom message situated below the field to inform customers of the error
 -   Date of birth should be checked to ensure the customer is over 18 years old
--   Credit card account number should be
+-   Credit card number should be validated as 16 digits. Bonus marks if you can think of any other validation required here.
 -   Hidden fields should not be validated
 
 3. Handle submit
 
--   Upon submit, show the success message to customers
+-   Upon submit, show the success message to customers - They data does not need to be sent anywhere
 
 ## Submitting
 
