@@ -24,22 +24,22 @@ Please complete the following tasks to help improve our mock customer ticket cre
 1. Add conditional display to the form
 
 -   The Credit Card Number field should only be shown when the user selects "Credit Card" as their product type
--   The Personal Loan Account Number should only be shown when the user selects "Personal Loan Account Number" as their product type
+-   The Personal Loan Account Number should only be shown when the user selects "Personal Loan" as their product type
 
 2. Add form validation
 
 -   All fields marked with a \* are required
--   Validation should be triggered on blur and also on submit.
--   Validation should trigger a custom message situated below the field to inform customers of the error
+-   Validation should be triggered on blur and checked again on form submit.
+-   Validation should trigger an error state on the element and a custom message situated below the field to inform customers of the error
 -   Date of birth should be checked to ensure the customer is over 18 years old
--   Credit card number should be validated as 16 digits. Bonus marks if you can think of any other validation required here.
+-   Credit card number should be validated as 16 digits. Bonus marks if you can think of any other validation that may help here.
 -   Hidden fields should not be validated
 
 3. Handle submit
 
--   Upon submit, show the success message to customers - They data does not need to be sent anywhere
+-   Upon submit, show the success message to customers - The form data does not need to be sent anywhere
 
 ## Submitting
 
-1. Push your final changes
-2. Send us a link to your forked repo with the changes
+1. Push your final changes to your forked repo
+2. Send us a link to your repo on Github with the changes
