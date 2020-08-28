@@ -2,8 +2,157 @@
     <head>
         <title>I'm a Zendesk Form</title>
         <link rel="stylesheet" href="./style.scss" />
-    </head>
-    <body>
+    </head>    
+    <!--Adding moment through source script as my vscode was giving me some errors-->>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script type="text/javascript">
+        
+        
+    
+        // function will change css style to block if selected by radio button, revert when switching radio buttons
+        function conditionalDisplay(){
+                var hiddenCC = document.getElementById("ccCheckedDiv");
+                var hiddenPL = document.getElementById("plCheckedDiv");
+                var checkboxCC = document.getElementById("inlineRadio1");
+                var checkboxPL = document.getElementById("inlineRadio2");
+
+                if(checkboxCC.checked){
+                    hiddenCC.style.display = "block"; 
+                    hiddenPL.style.display = "none";                             
+                }
+                if(checkboxPL.checked){
+                    hiddenPL.style.display = "block";
+                    hiddenCC.style.display = "none";
+                }                                    
+            }       
+        
+        // validation functions for each field
+        function validateFName(inputText){             
+            if(inputText.value != ""){
+                inputText.style.color = "green"; 
+                document.getElementById("fNameError").innerHTML = "";              
+            } else {
+                document.getElementById("fNameError").innerHTML = "First name field is required!";
+                return false;
+            }
+        }
+
+        function validateLName(inputText){             
+            if(inputText.value != ""){
+                inputText.style.color = "green"; 
+                document.getElementById("lNameError").innerHTML = "";            
+            } else {
+                document.getElementById("lNameError").innerHTML = "Last name field is required!";
+                return false;
+            }
+        }
+
+        function validateDDob(inputText){             
+            if(inputText.value != ""){
+                if(inputText.value < 0 || inputText.value > 31) {
+                    document.getElementById("dobError").innerHTML = "Day must be betweeen 1-31!";
+                    inputText.style.color = "red";
+                } else{
+                    inputText.style.color = "green"; 
+                    document.getElementById("dobError").innerHTML = "" ;
+                }         
+                          
+            } else {
+                inputText.style.color = "red";
+                document.getElementById("dobError").innerHTML = "Day field is required!"
+                return false;
+            }
+        }
+
+        function validateMDob(inputText){             
+            if(inputText.value != ""){
+                if(inputText.value < 0 || inputText.value > 12){
+                    document.getElementById("dobError").innerHTML = "Month must be betweeen 1-12!";
+                    inputText.style.color = "red";
+                } else{
+                    inputText.style.color = "green"; 
+                    document.getElementById("dobError").innerHTML = "" ; 
+                }                             
+            } else {
+                inputText.style.color = "red";
+                document.getElementById("dobError").innerHTML = "Month field is required!"
+                return false;
+            }
+        }
+
+        function validateYDob(inputText){             
+            if(inputText.value != ""){
+                if(inputText.value < 1903){
+                    document.getElementById("dobError").innerHTML = "Please enter a valid year!";
+                    inputText.style.color = "red";
+                } else{
+                    inputText.style.color = "green"; 
+                document.getElementById("dobError").innerHTML = "" ;
+                }
+                      
+            } else {
+                inputText.style.color = "red";
+                document.getElementById("dobError").innerHTML = "Year field is required!"
+                return false;
+            }
+
+            var birthday = "";
+            birthday += document.getElementById("year-dob").value + '-';
+            birthday += document.getElementById("month-dob").value + '-';
+            birthday += document.getElementById("day-dob").value;  
+            var yearsFrom = moment().diff(birthday, 'years', false);
+            if(yearsFrom < 18)
+            {
+                document.getElementById("dobError").innerHTML = "You must be at least 18!";
+                return false;
+            }  
+        }
+        
+        function validateCreditCard(){
+            
+            var isCreditChecked = document.getElementById("inlineRadio1");
+
+            if(isCreditChecked.checked){
+                
+                var CCValue = document.getElementById("cc-no").value;               
+
+                if(CCValue != "")
+                {
+                    document.getElementById("productError").innerHTML = "";
+                } else{
+                    document.getElementById("productError").innerHTML = "You must enter a 16 digit number!";
+                    return false;
+                }            
+
+                
+            }
+        }
+
+        function validatePersonalLoan(){
+
+            var isPLChecked = document.getElementById("inlineRadio2");
+            
+            if(isPLChecked.checked){
+                var PLValue = document.getElementById("pl-acc-no").value;
+                if(PLValue != ""){
+                    document.getElementById("productError").innerHTML = "";                                       
+                } else {
+                    document.getElementById("productError").innerHTML = "You must enter a number!"; 
+                    return false;                   
+                }
+            }
+        } 
+        
+
+        // displays success momentarily as the site refreshes
+        function displaySuccess(){
+            var hiddenSuccess = document.getElementById("success-message");
+            hiddenSuccess.style.display = "block";            
+        }         
+        
+                             
+    </script>     
+    <body>        
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -16,32 +165,36 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <form>
+                    <form onsubmit="displaySuccess()">
                         <div class="form-group">
-                            <label for="first-name">First name<sup>*</sup></label>
-                            <input type="text" class="form-control" id="first-name" placeholder="First name" />
+                            <label for="first-name">First name<sup>*</sup></label> <!--Adding onblur for each required field while also adding regex so that people don't enter numbers for a name-->
+                            <input type="text" class="form-control" id="first-name" placeholder="First name" onblur="validateFName(this)" pattern="^[a-zA-Z_ ]*$" required />
+                            <p id="fNameError"></p>
                         </div>
                         <div class="form-group">
                             <label for="middle-name">Middle name</label>
-                            <input type="text" class="form-control" id="middle-name" placeholder="Middle name" />
+                            <input type="text" class="form-control" id="middle-name" placeholder="Middle name" pattern="^[a-zA-Z_ ]*$" />
                         </div>
                         <div class="form-group">
                             <label for="last-name">Last name<sup>*</sup></label>
-                            <input type="text" class="form-control" id="last-name" placeholder="Last name" />
+                            <!-- Using regex to make sure only letters are typed into name/lastname-->
+                            <input type="text" class="form-control" id="last-name" placeholder="Last name" onblur="validateLName(this)" pattern="^[a-zA-Z_ ]*$" required />
+                            <p id="lNameError"></p>
                         </div>
                         <div class="form-group">
                             <label>Date of birth<sup>*</sup></label>
                             <div class="form-row">
                                 <div class="col">
-                                    <input type="text" class="form-control" placeholder="Day" />
+                                    <input type="number" class="form-control" id="day-dob" placeholder="Day" onblur="validateDDob(this)"  required />
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control" placeholder="Month" />
+                                    <input type="number" class="form-control" id="month-dob" placeholder="Month" onblur="validateMDob(this)"  required/>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control" placeholder="Year" />
-                                </div>
+                                    <input type="number" class="form-control" id="year-dob" placeholder="Year" onblur="validateYDob(this)"  required />
+                                </div>                            
                             </div>
+                            <p id="dobError"></p>
                         </div>
                         <div class="form-group">
                             <label>What product do you have with Latitude?<sup>*</sup></label>
@@ -52,19 +205,23 @@
                                         <input
                                             class="form-check-input"
                                             type="radio"
+                                            onclick="conditionalDisplay()"
                                             name="inlineRadioOptions"
-                                            id="inlineRadio1"
+                                            id="inlineRadio1"                                            
                                             value="cc"
+
                                         />
+                                        <!-- Adding display functionality to only show when clicked for both fields-->
                                         <label class="form-check-label" for="inlineRadio1">Credit Card</label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input
                                             class="form-check-input"
                                             type="radio"
+                                            onclick="conditionalDisplay()"
                                             name="inlineRadioOptions"
                                             id="inlineRadio2"
-                                            value="pl"
+                                            value="pl"                                                                                      
                                         />
                                         <label class="form-check-label" for="inlineRadio2">Personal Loan</label>
                                     </div>
@@ -72,17 +229,25 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="cc-no">Credit Card Number<sup>*</sup></label>
-                            <input type="text" class="form-control" id="cc-no" placeholder="Credit Card Number" />
+                        <div id="ccCheckedDiv">
+                            <label for="cc-no" id="labelForCC" >Credit Card Number<sup>*</sup></label>
+                            <!-- regex for exactly 16 digits-->
+                            <input type="text" class="form-control" id="cc-no" placeholder="Credit Card Number" onblur="validateCreditCard()" pattern="^\d{16}$"/>
+                            <!-- decided to use onblur since they can't click on the element if its hidden anyways so it wont impact validation-->
+                        </div>
                         </div>
                         <div class="form-group">
-                            <label for="pl-acc-no">Personal Loan Account Number<sup>*</sup></label>
+                            <div id="plCheckedDiv">
+                            <label for="pl-acc-no" id="labelForPL">Personal Loan Account Number<sup>*</sup></label>
                             <input
-                                type="text"
+                                type="number"
                                 class="form-control"
                                 id="pl-acc-no"
                                 placeholder="Personal Loan Account Number"
-                            />
+                                onblur="validatePersonalLoan()"
+                            />                            
+                        </div>
+                        <p id="productError"></p>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit Ticket</button>
                     </form>
@@ -94,7 +259,10 @@
                     <p>A member of the customer service team will get back to within 48hours.</p>
                 </div>
             </div>
-        </div>
-        <script src="./main.js"></script>
+            <p id ="errorMessages"></p>
+        </div>        
+        <script src="./main.js"></script>       
+
+
     </body>
 </html>
